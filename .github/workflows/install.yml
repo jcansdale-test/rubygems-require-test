@@ -16,7 +16,7 @@ jobs:
         run: |
           cat > Gemfile << EOM
           source "https://rubygems.pkg.github.com/jcansdale-test" do
-            gem "rubygems-publish", "~> 1.1.6", :require => "bish-bash-bosh"
+            gem "rubygems-publish", "~> 1.1.6", :require => "rubygems-publish"
           end
           EOM
 
