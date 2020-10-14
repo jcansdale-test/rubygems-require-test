@@ -15,6 +15,7 @@ jobs:
       - name: Add Gemfile
         run: |
           cat > Gemfile << EOM
+          require 'rubygems-publish'
           source "https://rubygems.pkg.github.com/jcansdale-test" do
             gem "rubygems-publish", "~> 1.1.6", require: "rubygems-publish"
           end
@@ -34,40 +35,3 @@ jobs:
 
       - name: Run using bundle exec
         run: bundle exec ruby main.rb
-
-  gem-install:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Setup Ruby 2.6
-        uses: actions/setup-ruby@v1
-        with:
-          version: 2.6.x
-
-      - name: Add ~/.gemrc
-        run: |
-          cat > ~/.gemrc << EOM
-          ---
-          :backtrace: false
-          :bulk_threshold: 1000
-          :sources:
-          - https://rubygems.org/
-          - https://token:${{ github.token }}@rubygems.pkg.github.com/jcansdale-test/
-          :update_sources: true
-          :verbose: true  
-          EOM
-
-      - name: Install Gem
-        run: gem install rubygems-publish
-
-      - name: Add main.rb
-        run: |
-          cat > main.rb << EOM
-          require 'rubygems-publish'
-          RubyGemsPublish.hello
-          EOM
-
-      - name: Run using ruby
-        run: ruby main.rb
