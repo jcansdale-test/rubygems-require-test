@@ -23,7 +23,6 @@ jobs:
       - name: Add main.rb
         run: |
           cat > main.rb << EOM
-          require 'rubygems-publish'
           RubyGemsPublish.hello
           EOM
 
