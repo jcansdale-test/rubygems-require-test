@@ -31,7 +31,7 @@ jobs:
         run: bundle config https://rubygems.pkg.github.com/jcansdale-test token:${{ github.token }}
 
       - name: Install using Bundler
-        run: bundle install
+        run: bundle install --verbose
 
       - name: Run using bundle exec
         run: bundle exec ruby main.rb
