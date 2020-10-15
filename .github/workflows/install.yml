@@ -12,6 +12,8 @@ jobs:
         with:
           version: 2.5.5
 
+      - run: bundler --version
+
       - name: Add Gemfile
         run: |
           cat > Gemfile << EOM
